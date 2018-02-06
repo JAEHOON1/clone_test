@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>blog_v3jq</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>list.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 파일 다운로드 서블릿 선언 시작 -->
+  <servlet>
+    <servlet-name>Download</servlet-name>
+    <servlet-class>nation.web.tool.Download</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Download</servlet-name>
+    <url-pattern>/download</url-pattern>
+  </servlet-mapping>
+  <!-- 파일 다운로드 서블릿 선언 종료 -->
+    
+    <!-- ***************** Filter***************** -->
+  <filter>
+    <filter-name>URILogFilter</filter-name>   <!-- 필터 이름 -->
+    <filter-class>nation.web.tool.URILogFilter</filter-class> <!-- class 이름 -->
+    <init-param>
+      <param-name>charSet</param-name> <!-- 문자셋 -->
+      <param-value>utf-8</param-value>
+    </init-param>
+  </filter>
+ 
+  <filter-mapping>
+    <filter-name>URILogFilter</filter-name> <!-- 필터 이름 -->
+    <url-pattern>/*</url-pattern> <!-- 모든 접속 주소에 대하여 작동 -->
+  </filter-mapping>
+  
+   <filter>
+    <filter-name>AdminFilter</filter-name>
+    <filter-class>nation.web.tool.AdminFilter</filter-class>
+    <init-param>
+      <param-name>charSet</param-name>
+      <param-value>utf-8</param-value>
+    </init-param>
+  </filter>
+ 
+  <filter-mapping>
+    <filter-name>AdminFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!-- ******************************************* -->
+</web-app>
